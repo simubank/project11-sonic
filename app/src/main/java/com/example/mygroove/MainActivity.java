@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
         if(savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.frame_layout, SavingsFragment.newInstance()).commit();
+                    .replace(R.id.frame_layout, MainFragment.newInstance()).commit();
         }
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -34,9 +34,14 @@ public class MainActivity extends AppCompatActivity {
                 Fragment selected = null;
                 switch (menuItem.getItemId()) {
                     case R.id.option1:
-                        selected = SavingsFragment.newInstance();
+                        selected = TransactionFragment.newInstance();
                         break;
-
+                    case R.id.option2:
+                        selected = MainFragment.newInstance();
+                        break;
+                    case R.id.option3:
+                        selected = InvestmentFragment.newInstance();
+                        break;
                 }
 
                 getSupportFragmentManager().beginTransaction()

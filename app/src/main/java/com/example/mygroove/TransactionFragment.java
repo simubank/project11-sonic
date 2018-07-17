@@ -1,20 +1,18 @@
 package com.example.mygroove;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class SavingsFragment extends Fragment {
-    public SavingsFragment() {
+public class TransactionFragment extends Fragment {
+    public TransactionFragment() {
         // Required empty public constructor
     }
 
-    public static SavingsFragment newInstance() {
-        SavingsFragment fragment = new SavingsFragment();
+    public static TransactionFragment newInstance() {
+        TransactionFragment fragment = new TransactionFragment();
         return fragment;
     }
 

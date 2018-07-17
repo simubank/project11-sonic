@@ -2,17 +2,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/option1"
-        android:title="Option1"
+        android:title="Transactions"
         android:enabled="true" />
 
     <item
         android:id="@+id/option2"
-        android:title="Option2"
+        android:title="DashBoard"
         android:enabled="true" />
 
     <item
         android:id="@+id/option3"
-        android:title="Option3"
+        android:title="Investment"
         android:enabled="true" />
 
 </menu>

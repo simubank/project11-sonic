@@ -2,20 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".TransactionFragment">
+    android:layout_height="match_parent"
+    tools:context=".InvestmentFragment">
 
+    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:id="@+id/textview5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Savings Fragment" />
+        android:text="@string/hello_blank_fragment" />
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView" />
 
 </LinearLayout>

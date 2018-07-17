@@ -1,8 +1,12 @@
 package com.example.mygroove;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MenuItem;
 
 import com.android.volley.VolleyError;
 import com.td.virtualbank.VirtualBank;
@@ -12,11 +16,34 @@ import com.td.virtualbank.VirtualBankGetCustomerRequest;
 public class MainActivity extends AppCompatActivity {
     public VirtualBank vb = VirtualBank.getBank("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJDQlAiLCJ0ZWFtX2lkIjoiMjgxMzgyMiIsImV4cCI6OTIyMzM3MjAzNjg1NDc3NSwiYXBwX2lkIjoiY2Y0MWYxNDktZTlmNC00ZWMwLTlkOTctYzA3NTNkMTBkNGZhIn0.T1_SXKfaNFUeKlkd0oWhmEOAcKm-fMw5BMZbl1w9psY");
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if(savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.frame_layout, SavingsFragment.newInstance()).commit();
+        }
+
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                Fragment selected = null;
+                switch (menuItem.getItemId()) {
+                    case R.id.option1:
+                        selected = SavingsFragment.newInstance();
+                        break;
+
+                }
+
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.frame_layout, selected).commit();
+                return true;
+            }
+        });
     }
 
     @Override

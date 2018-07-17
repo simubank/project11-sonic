@@ -28,7 +28,6 @@ class MainActivity : AppCompatActivity() {
             override fun onError(error: VolleyError?) {
                 Log.e("TAG", "Error", error)
             }
-
             
         })
     }

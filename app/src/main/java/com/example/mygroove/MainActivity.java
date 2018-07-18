@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
                 Fragment selected = null;
                 switch (menuItem.getItemId()) {
                     case R.id.option1:
-                        selected = TransactionFragment.newInstance();
+                        selected = SavingsFragment.newInstance();
                         break;
                     case R.id.option2:
                         selected = MainFragment.newInstance();

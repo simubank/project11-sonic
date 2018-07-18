@@ -6,13 +6,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class TransactionFragment extends Fragment {
-    public TransactionFragment() {
+public class SavingsFragment extends Fragment {
+    public SavingsFragment() {
         // Required empty public constructor
     }
 
-    public static TransactionFragment newInstance() {
-        TransactionFragment fragment = new TransactionFragment();
+    public static SavingsFragment newInstance() {
+        SavingsFragment fragment = new SavingsFragment();
         return fragment;
     }
 

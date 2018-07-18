@@ -3,13 +3,13 @@
     <item android:id="@+id/progressbar2">
         <rotate
             android:fromDegrees="270"
-            android:toDegrees="270"
             android:pivotX="50%"
-            android:pivotY="50%" >
+            android:pivotY="50%"
+            android:toDegrees="270">
             <shape
                 android:innerRadiusRatio="3.1"
                 android:shape="ring"
-                android:thicknessRatio="15" >
+                android:thicknessRatio="15">
                 <gradient
                     android:centerColor="@color/gray"
                     android:endColor="@color/gray"

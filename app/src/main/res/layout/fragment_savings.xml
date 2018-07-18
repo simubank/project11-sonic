@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".TransactionFragment">
+    android:background="@color/background"
+    tools:context=".SavingsFragment">
 
     <TextView
         android:id="@+id/textview5"
@@ -12,22 +13,23 @@
         android:layout_height="wrap_content"
         android:text="Savings Fragment" />
 
-    <!--<ProgressBar-->
-    <!--android:id="@+id/determinateBar"-->
-    <!--android:layout_width="200dp"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--style="@android:style/Widget.ProgressBar.Horizontal"-->
-    <!--android:progress="25"/>-->
-
     <android.support.constraint.ConstraintLayout
         android:layout_width="300dp"
         android:layout_height="300dp">
 
+        <TextView
+            android:id="@+id/percent1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textSize="30sp"
+            android:text="Discretionary\n50%" />
+
         <ProgressBar
             android:id="@+id/progressWheel2"
             style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="300dp"
-            android:layout_height="300dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_centerInParent="true"
             android:indeterminate="false"
             android:progress="100"
@@ -43,6 +45,5 @@
             android:progress="50"
             android:progressDrawable="@drawable/circular_progress_bar" />
     </android.support.constraint.ConstraintLayout>
-
 
 </LinearLayout>

@@ -14,6 +14,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/bottom_navigation_menu"
         android:layout_alignParentBottom="true"
+        app:itemBackground="@drawable/divider"
         android:background="?android:attr/windowBackground"/>
 
     <FrameLayout

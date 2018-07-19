@@ -1,5 +1,7 @@
 package com.example.mygroove;
 
+import android.app.Dialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -18,6 +20,7 @@ import com.td.virtualbank.VirtualBankGetCustomerRequest;
 
 public class MainActivity extends AppCompatActivity {
 
+    private Context context = this;
     public static String userId = "";
     public static VirtualBank vb = VirtualBank.getBank("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJDQlAiLCJ0ZWFtX2lkIjoiMjgxMzgyMiIsImV4cCI6OTIyMzM3MjAzNjg1NDc3NSwiYXBwX2lkIjoiY2Y0MWYxNDktZTlmNC00ZWMwLTlkOTctYzA3NTNkMTBkNGZhIn0.T1_SXKfaNFUeKlkd0oWhmEOAcKm-fMw5BMZbl1w9psY");
     private Toolbar toolbar;
@@ -69,9 +72,13 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_settings:
-                Fragment selected = SettingsFragment.newInstance();
-                getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.frame_layout, selected).commit();
+//                Fragment selected = SettingsFragment.newInstance();
+//                getSupportFragmentManager().beginTransaction()
+//                        .replace(R.id.frame_layout, selected).commit();
+                final Dialog dialog = new Dialog(context);
+                dialog.setContentView(R.layout.dialog);
+                dialog.setTitle("Title...");
+                dialog.show();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

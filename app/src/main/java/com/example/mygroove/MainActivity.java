@@ -12,6 +12,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.RadioButton;
+import android.widget.Toast;
 
 import com.android.volley.VolleyError;
 import com.td.virtualbank.VirtualBank;
@@ -82,6 +85,26 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
+        }
+    }
+
+    public void onRadioButtonClicked(View view) {
+        // Is the button now checked?
+        boolean checked = ((RadioButton) view).isChecked();
+
+        switch (view.getId()) {
+            case R.id.user1:
+                if (checked)
+                    Toast.makeText(this, "User1 Selected", Toast.LENGTH_SHORT).show();
+                    break;
+            case R.id.user2:
+                if (checked)
+                    Toast.makeText(this, "User2 Selected", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.user3:
+                if (checked)
+                    Toast.makeText(this, "User3 Selected", Toast.LENGTH_SHORT).show();
+                break;
         }
     }
 

@@ -43,4 +43,12 @@
             android:textSize="28sp"
             android:onClick="onRadioButtonClicked" />
     </RadioGroup>
+
+    <Button
+        android:id="@+id/dialog_confirm"
+        android:textSize="28sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Confirm"
+        />
 </LinearLayout>

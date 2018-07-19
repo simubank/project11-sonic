@@ -3,4 +3,29 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="ip_q1_Prompt">What best describes your goals within the next 1 year?</string>
+    <string name="ip_cnt1_btn">continue</string>
+    <string name="ip_st_1">Acquire Property</string>
+    <string name="ip_st_2">Buy A Car</string>
+    <string name="ip_st_3">Post-Secenodary Education</string>
+    <string name="ip_st_none">NONE APPLY</string>
+    <string name="ip_st_cnt">NEXT</string>
+    <string name="ip_st_4">Start a Business</string>
+    <string name="title_activity_scrolling">ScrollingActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="ip_q2_prompt">What describes your goals within the next 1 years?</string>
+    <string name="risk_prompt">What is your risk tolerance?</string>
+    <string name="income_prompt">What is your monthly income</string>
+    <string name="expense_prompt">What is your monthly expenses (i.e/total of insurance, rent, mortgage payments, car payments...etc)</string>
+    <string name="btn_ip_sumb">SUMBIT</string>
+    <string name="info_risktol">What is risk tolerance?\n\n
+        Your risk tolerance can be best described as how much of a risk you are willing to take to earn a return.
+        Not all investments can guarantee a return but usually the higher the risk the higher return.
+    However, you have to gage if it is really worth it because a higher risk means you are more likely to loose your money.</string>
+    <string name="ip_st_5">Vacation Trip</string>
+    <string name="ip_riskr_0">Take the risk</string>
+    <string name="ip_riskr_1">Play It Safe</string>
+    <string name="ip_risk_wyr">Woul you rather risk $50 to earn $50 or keep your $50 and take a guaranteed $5</string>
+    <string name="preview_title">\nHere\'s Where You Can Start!</string>
+
 </resources>

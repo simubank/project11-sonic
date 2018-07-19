@@ -23,6 +23,8 @@ import com.td.virtualbank.VirtualBankGetCustomerRequest;
 
 public class MainActivity extends AppCompatActivity {
 
+    InvestmentFragment f = new InvestmentFragment();
+    PreviewFragment suggestions = new PreviewFragment();
     private Context context = this;
     public static String userId = "";
     public static VirtualBank vb = VirtualBank.getBank("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJDQlAiLCJ0ZWFtX2lkIjoiMjgxMzgyMiIsImV4cCI6OTIyMzM3MjAzNjg1NDc3NSwiYXBwX2lkIjoiY2Y0MWYxNDktZTlmNC00ZWMwLTlkOTctYzA3NTNkMTBkNGZhIn0.T1_SXKfaNFUeKlkd0oWhmEOAcKm-fMw5BMZbl1w9psY");
@@ -32,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        f.init_inv();
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
@@ -122,5 +125,22 @@ public class MainActivity extends AppCompatActivity {
                 Log.e("TAG", "Error", error);
             }
         });
+    }
+
+
+    public void BtnIPClicked(View view) {
+        f.BtnIPClicked(view);
+    }
+
+    public void BtnFirstNext(View view){
+        f.BtnFirstNext(view, this);
+    }
+
+    //ON CLICK SHOW THE SUGGESTIONS
+    public void showPrev(View view){
+
+        InvestmentFragment.InvestmentPreview prev = f.showPrev(view, this);
+        getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, PreviewFragment.newInstance()).commit();
+        suggestions.setPreview(f,this);
     }
 }

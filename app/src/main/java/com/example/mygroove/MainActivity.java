@@ -14,7 +14,9 @@ import com.td.virtualbank.VirtualBankCustomer;
 import com.td.virtualbank.VirtualBankGetCustomerRequest;
 
 public class MainActivity extends AppCompatActivity {
-    public VirtualBank vb = VirtualBank.getBank("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJDQlAiLCJ0ZWFtX2lkIjoiMjgxMzgyMiIsImV4cCI6OTIyMzM3MjAzNjg1NDc3NSwiYXBwX2lkIjoiY2Y0MWYxNDktZTlmNC00ZWMwLTlkOTctYzA3NTNkMTBkNGZhIn0.T1_SXKfaNFUeKlkd0oWhmEOAcKm-fMw5BMZbl1w9psY");
+
+
+    public static VirtualBank vb = VirtualBank.getBank("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJDQlAiLCJ0ZWFtX2lkIjoiMjgxMzgyMiIsImV4cCI6OTIyMzM3MjAzNjg1NDc3NSwiYXBwX2lkIjoiY2Y0MWYxNDktZTlmNC00ZWMwLTlkOTctYzA3NTNkMTBkNGZhIn0.T1_SXKfaNFUeKlkd0oWhmEOAcKm-fMw5BMZbl1w9psY");
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -34,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
                 Fragment selected = null;
                 switch (menuItem.getItemId()) {
                     case R.id.option1:
-                        selected = SavingsFragment.newInstance();
+                        selected = SavingsFragment.newInstance(getBaseContext());
                         break;
                     case R.id.option2:
                         selected = MainFragment.newInstance();
@@ -43,7 +45,6 @@ public class MainActivity extends AppCompatActivity {
                         selected = InvestmentFragment.newInstance();
                         break;
                 }
-
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.frame_layout, selected).commit();
                 return true;

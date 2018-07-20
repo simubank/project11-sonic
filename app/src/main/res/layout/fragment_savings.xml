@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/background"
+    android:orientation="vertical"
     tools:context=".SavingsFragment">
 
     <TextView
@@ -22,8 +23,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:textSize="30sp"
-            android:text="Discretionary\n50%" />
+            android:text="Discretionary\n50%"
+            android:textSize="30sp" />
 
         <ProgressBar
             android:id="@+id/progressWheel2"
@@ -45,5 +46,13 @@
             android:progress="50"
             android:progressDrawable="@drawable/circular_progress_bar" />
     </android.support.constraint.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/monthly_average"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Monthly Average"
+        android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@id/progressWheel" />
 
 </LinearLayout>

@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.android.volley.VolleyError;
 import com.example.mygroove.MainActivity;
@@ -23,6 +24,8 @@ import java.util.Map;
 @SuppressLint("ValidFragment")
 public class SavingsFragment extends Fragment {
     private Context context;
+    private double monthlySpending;
+    private TextView monthlyAverage;
 
     public SavingsFragment(Context context) {
         this.context = context;
@@ -65,9 +68,16 @@ public class SavingsFragment extends Fragment {
                         transactions.put(virtualBankTransaction.postDate.substring(0, 7), temp);
                     }
                 }
-                for (Map.Entry<String, Double> entry : transactions.entrySet()) {
-                    Log.d("TAG", "LOOOL: " + entry.getKey() + " " + entry.getValue());
+                int count =0;
+                Double total = 0.0;
+                for (Double entry : transactions.values()) {
+                    count++;
+                    total += entry;
                 }
+                monthlyAverage = getView().findViewById(R.id.monthly_average);
+                monthlySpending = Math.round(total/count);
+                Log.d("TAG", "Monthly Spending: "+monthlySpending);
+                monthlyAverage.setText("Monthly Average: "+monthlySpending);
             }
 
             @Override

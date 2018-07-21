@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.android.volley.VolleyError;
@@ -26,6 +27,7 @@ public class SavingsFragment extends Fragment {
     private Context context;
     private double monthlySpending;
     private TextView monthlyAverage;
+    private ProgressBar progressBar;
 
     public SavingsFragment(Context context) {
         this.context = context;
@@ -55,11 +57,10 @@ public class SavingsFragment extends Fragment {
         MainActivity.vb.getCustomerTransactions(context, "cf41f149-e9f4-4ec0-9d97-c0753d10d4fa_46ecc00a-84f5-4b64-a1fa-4354edeba8c4", new VirtualBankGetCustomerTransactionsRequest() {
             @Override
             public void onSuccess(ArrayList<VirtualBankTransaction> response) {
-                Log.d("TAGGGGG", "CHECK MEEE: " + response);
                 HashMap<String, Double> transactions = new HashMap<>();
                 for (VirtualBankTransaction virtualBankTransaction : response) {
                     Double amount = virtualBankTransaction.currencyAmount;
-                    Log.d("TAG", "Amount: "+amount);
+                    Log.d("TAG", "Amount: " + amount);
                     Double temp;
                     if (transactions.get(virtualBankTransaction.postDate.substring(0, 7)) == null)
                         transactions.put(virtualBankTransaction.postDate.substring(0, 7), amount);
@@ -68,16 +69,13 @@ public class SavingsFragment extends Fragment {
                         transactions.put(virtualBankTransaction.postDate.substring(0, 7), temp);
                     }
                 }
-                int count =0;
+                int count = 0;
                 Double total = 0.0;
                 for (Double entry : transactions.values()) {
                     count++;
                     total += entry;
                 }
-                monthlyAverage = getView().findViewById(R.id.monthly_average);
-                monthlySpending = Math.round(total/count);
-                Log.d("TAG", "Monthly Spending: "+monthlySpending);
-                monthlyAverage.setText("Monthly Average: "+monthlySpending);
+                updateProgressBar(total, count, transactions);
             }
 
             @Override
@@ -85,5 +83,31 @@ public class SavingsFragment extends Fragment {
 
             }
         });
+    }
+
+    public void mostRecentWantTransactions() {
+        String[] typicalWants = {"power", "energy", "condo", "enbridge", "mortgage", "savings", "overdraft", "insurance", "provident", "rent", "tax", "hyrdo", "utility", "gas"};
+        String exsentence = "Check this answer and you can find the keyword with this code";
+        String search  = "keyword";
+        ArrayList<String> wants = null;
+        for(int i = 0; i<typicalWants.length; i++) {
+            if(exsentence.toLowerCase().indexOf(typicalWants[i].toLowerCase()) != -1) {
+                return;
+            }
+            wants.add(search);
+            if(wants.size() == 5) {
+                return;
+            }
+        }
+    }
+
+    public void updateProgressBar(double total, double count, HashMap<String, Double> transactions) {
+        monthlyAverage = getView().findViewById(R.id.monthly_average);
+        progressBar = getView().findViewById(R.id.progressWheel);
+        monthlySpending = Math.round(total / count);
+        Log.d("TAG", "Monthly Spending: " + monthlySpending);
+        monthlyAverage.setText("Monthly Average: " + monthlySpending);
+        int progress = (int) ((transactions.get("2018-07") / monthlySpending) * 100);
+        progressBar.setProgress(progress);
     }
 }

@@ -228,8 +228,8 @@ public class InvestmentFragment extends Fragment {
             portfolios.add(new Portfolio(investment_, desc));
         }
 
-        public Investment portfolio(int i){
-            return portfolios.get(i).investment;
+        public Portfolio portfolio(int i){
+            return portfolios.get(i);
         }
 
 
@@ -264,7 +264,9 @@ public class InvestmentFragment extends Fragment {
 
             if(riskRank ==  1){
                 if(termPref == 1){
-                    this.add(temp2, "");
+                    this.add(temp2, "What is risk tolerance?\\n\\n\n" +
+                            "        Your risk tolerance can be best described as how much of a risk you are willing to take to earn a return.\n" +
+                            "        Not all investments can guarantee a return but usually the higher the r");
                 }
                 else{
 
@@ -303,7 +305,7 @@ public class InvestmentFragment extends Fragment {
         //CREATE A PREVIEW
 
         prev = new InvestmentPreview(view, main);
-        String name = prev.portfolio(0).getName();
+        String name = prev.portfolio(0).investment.getName();
         //UPDATE SCREEN W/ PREVIEW
        // TextView tv = main.findViewById(R.id.textView2);
        // tv.setText(name);//(prev.portfolios.get(0).investment.getName()));

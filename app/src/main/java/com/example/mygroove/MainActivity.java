@@ -14,6 +14,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.RadioButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.VolleyError;
@@ -23,18 +24,23 @@ import com.td.virtualbank.VirtualBankGetCustomerRequest;
 
 public class MainActivity extends AppCompatActivity {
 
-    InvestmentFragment f = new InvestmentFragment();
+    public static InvestmentFragment f = new InvestmentFragment();
+
     PreviewFragment suggestions = new PreviewFragment();
     private Context context = this;
     public static String userId = "";
     public static VirtualBank vb = VirtualBank.getBank("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJDQlAiLCJ0ZWFtX2lkIjoiMjgxMzgyMiIsImV4cCI6OTIyMzM3MjAzNjg1NDc3NSwiYXBwX2lkIjoiY2Y0MWYxNDktZTlmNC00ZWMwLTlkOTctYzA3NTNkMTBkNGZhIn0.T1_SXKfaNFUeKlkd0oWhmEOAcKm-fMw5BMZbl1w9psY");
     private Toolbar toolbar;
 
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         f.init_inv();
+
+
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
@@ -57,13 +63,16 @@ public class MainActivity extends AppCompatActivity {
                         selected = MainFragment.newInstance();
                         break;
                     case R.id.option3:
-                        selected = InvestmentFragment.newInstance();
+                            selected = InvestmentFragment.newInstance();
+                            //firstTime = false;
+
                         break;
                 }
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.frame_layout, selected).commit();
                 return true;
             }
+
         });
     }
 
@@ -115,6 +124,7 @@ public class MainActivity extends AppCompatActivity {
     public void onStart() {
         super.onStart();
         vb.getCustomer(getBaseContext(), "cf41f149-e9f4-4ec0-9d97-c0753d10d4fa_6c8434d3-9d00-45d9-83d6-5c87cc97cdd8", new VirtualBankGetCustomerRequest() {
+
             @Override
             public void onSuccess(VirtualBankCustomer response) {
                 Log.d("TAG", "" + response.getBirthDate());
@@ -139,8 +149,18 @@ public class MainActivity extends AppCompatActivity {
     //ON CLICK SHOW THE SUGGESTIONS
     public void showPrev(View view){
 
-        InvestmentFragment.InvestmentPreview prev = f.showPrev(view, this);
-        getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, PreviewFragment.newInstance()).commit();
-        suggestions.setPreview(f,this);
+        f.prev = f.showPrev(view, this);
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.frame_layout, PreviewFragment.newInstance()).commit();
+        //setContentView(R.layout.fragment_preview);
+        suggestions.setPreview(view, f, this);
+
+
     }
+
+    //public void setPreview(View view){
+    //    setPre
+   // }
+
+
 }

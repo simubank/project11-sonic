@@ -76,6 +76,7 @@ public class SavingsFragment extends Fragment {
                     total += entry;
                 }
                 updateProgressBar(total, count, transactions);
+                mostRecentWantTransactions(response);
             }
 
             @Override
@@ -85,19 +86,30 @@ public class SavingsFragment extends Fragment {
         });
     }
 
-    public void mostRecentWantTransactions() {
+    public void mostRecentWantTransactions(ArrayList<VirtualBankTransaction> response) {
         String[] typicalWants = {"power", "energy", "condo", "enbridge", "mortgage", "savings", "overdraft", "insurance", "provident", "rent", "tax", "hyrdo", "utility", "gas"};
-        String exsentence = "Check this answer and you can find the keyword with this code";
-        String search  = "keyword";
+        String search = "keyword";
         ArrayList<String> wants = null;
-        for(int i = 0; i<typicalWants.length; i++) {
-            if(exsentence.toLowerCase().indexOf(typicalWants[i].toLowerCase()) != -1) {
-                return;
+        for (VirtualBankTransaction virtualBankTransaction : response) {
+            String description = virtualBankTransaction.getDescription();
+            String vendor = virtualBankTransaction.getMerchantName();
+            for (int i = 0; i < typicalWants.length; i++) {
+                if (description != null && description.toLowerCase().indexOf(typicalWants[i].toLowerCase()) != -1 || vendor != null && vendor.toLowerCase().indexOf(typicalWants[i].toLowerCase()) != -1) {
+                    return;
+                } else if (description != null && vendor != null) {
+                    if (vendor != null) {
+                        wants.add(virtualBankTransaction.getMerchantName());
+                    } else {
+                        wants.add(virtualBankTransaction.getDescription());
+                    }
+                    if (wants.size() == 5) {
+                        return;
+                    }
+                }
             }
-            wants.add(search);
-            if(wants.size() == 5) {
-                return;
-            }
+        }
+        for (String a : wants) {
+            Log.d("TAGGG", "User's wants: " + a);
         }
     }
 

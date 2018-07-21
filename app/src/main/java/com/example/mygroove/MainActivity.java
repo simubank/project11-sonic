@@ -106,16 +106,22 @@ public class MainActivity extends AppCompatActivity {
 
         switch (view.getId()) {
             case R.id.user1:
-                if (checked)
-                    Toast.makeText(this, "User1 Selected", Toast.LENGTH_SHORT).show();
-                    break;
+                if (checked) {
+                    Toast.makeText(this, "Selected Ren Drzazgowski", Toast.LENGTH_SHORT).show();
+                    userId = "cf41f149-e9f4-4ec0-9d97-c0753d10d4fa_7a215999-9364-4df1-a80a-5e8c7ecb483a";
+                }
+                break;
             case R.id.user2:
-                if (checked)
-                    Toast.makeText(this, "User2 Selected", Toast.LENGTH_SHORT).show();
+                if (checked) {
+                    Toast.makeText(this, "Selected Elmo Swint", Toast.LENGTH_SHORT).show();
+                    userId = "cf41f149-e9f4-4ec0-9d97-c0753d10d4fa_a3a7dd7b-675b-4ff7-b037-3ebdc7de198b";
+                }
                 break;
             case R.id.user3:
-                if (checked)
-                    Toast.makeText(this, "User3 Selected", Toast.LENGTH_SHORT).show();
+                if (checked) {
+                    Toast.makeText(this, "Selected Leam Pipes", Toast.LENGTH_SHORT).show();
+                    userId = "cf41f149-e9f4-4ec0-9d97-c0753d10d4fa_bdf33543-8a53-4a3b-8ab8-2aa3d1a0b532";
+                }
                 break;
         }
     }

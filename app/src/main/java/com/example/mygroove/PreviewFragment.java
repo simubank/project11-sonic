@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 public class PreviewFragment extends Fragment {
 
-    InvestmentFragment.InvestmentPreview pre;
+    InvestmentFragment p;
     //MainActivity main;
 
     public PreviewFragment() {
@@ -42,17 +42,21 @@ public class PreviewFragment extends Fragment {
 
 
     public void setPreview(View view, InvestmentFragment f, MainActivity main){
-        pre = f.prev;
+        p = f;
+        //main.setContentView(R.layout.fragment_preview);
 
-       // main.setContentView(R.layout.fragment_preview);
-        TextView tv = (TextView) main.findViewById(R.id.inv1text);
-        TextView tv2 = (TextView) main.findViewById(R.id.inv1_prev_d);
-        String head = pre.portfolio(0).investment.getName();
-        String desc = pre.portfolio(0).reason;
-        //tv.setText(head);
        // tv2.setText(desc);
     }
 
+    public void show(View view, MainActivity main, InvestmentFragment f){
+        p = f;
+        TextView tv = (TextView) main.findViewById(R.id.inv1text);
+        TextView tv2 = (TextView) main.findViewById(R.id.inv1_prev_d);
+        String head = p.prev.portfolio(0).investment.getName();
+        String desc = p.prev.portfolio(0).reason;
+        tv.setText(head);
+        tv2.setText(desc);
+    }
 
     public void onViewCreated(View view, @Nullable Bundle savedInstance){
         // Inflate the layout for this fragment
@@ -61,6 +65,8 @@ public class PreviewFragment extends Fragment {
 
 
     }
+
+
 
 
 

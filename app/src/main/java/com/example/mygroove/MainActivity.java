@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.frame_layout, MainFragment.newInstance()).commit();
@@ -63,9 +64,7 @@ public class MainActivity extends AppCompatActivity {
                         selected = MainFragment.newInstance();
                         break;
                     case R.id.option3:
-                            selected = InvestmentFragment.newInstance();
-                            //firstTime = false;
-
+                        selected = InvestmentFragment.newInstance();
                         break;
                 }
                 getSupportFragmentManager().beginTransaction()
@@ -141,6 +140,8 @@ public class MainActivity extends AppCompatActivity {
                 Log.e("TAG", "Error", error);
             }
         });
+
+
     }
 
 
@@ -155,14 +156,23 @@ public class MainActivity extends AppCompatActivity {
     //ON CLICK SHOW THE SUGGESTIONS
     public void showPrev(View view){
 
+
+        //getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, PreviewFragment.newInstance()).commit();
+        //getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, SuggestionsFragment.newInstance()).commit();
         f.prev = f.showPrev(view, this);
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.frame_layout, PreviewFragment.newInstance()).commit();
-        //setContentView(R.layout.fragment_preview);
-        suggestions.setPreview(view, f, this);
+        setContentView(R.layout.fragment_preview);
+        suggestions.show(view, this, f);
+
+        //TextView tv = (TextView) findViewById(R.id.inv1text);
+       // TextView tv2 = (TextView) main.findViewById(R.id.inv1_prev_d);
+        //String head = p.prev.portfolio(0).investment.getName();
+        //String desc = p.prev.portfolio(0).reason;
+        //tv.setText("yo");
 
 
     }
+
+
 
     //public void setPreview(View view){
     //    setPre

@@ -307,8 +307,8 @@ public class InvestmentFragment extends Fragment {
         prev = new InvestmentPreview(view, main);
         String name = prev.portfolio(0).investment.getName();
         //UPDATE SCREEN W/ PREVIEW
-       // TextView tv = main.findViewById(R.id.textView2);
-       // tv.setText(name);//(prev.portfolios.get(0).investment.getName()));
+        TextView tv = main.findViewById(R.id.textView2);
+        tv.setText(name);//(prev.portfolios.get(0).investment.getName()));
         return prev;
     }
 
@@ -319,8 +319,8 @@ public class InvestmentFragment extends Fragment {
     //INITIALIZE NECESSARY VARIABLES -- CREATE ETF DICTIONARY
     public void init_inv(){
 
-        tempMutual = new Investment("Mutual Fund", 2.5,1000);
-        temp2 = new Investment("temp2", 1.5,100);
+        tempMutual = new Investment("TD Canadian Money Market Fund 1", 2.5,1000);
+        temp2 = new Investment("TD Dividend Growth Fund 1", 1.5,100);
         temp3 = new Investment("temp3", 0.5,500);
         temp4 = new Investment("temp4", 3.5,1000);
         temp5 = new Investment("temp5", 2.5,1000);

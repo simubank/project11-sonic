@@ -1,29 +1,18 @@
 package com.example.mygroove;
 
-
-import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ScrollView;
 import android.widget.SeekBar;
-import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.zip.Inflater;
-
-import com.example.mygroove.MainActivity;
-
 
 public class InvestmentFragment extends Fragment {
 
@@ -49,7 +38,7 @@ public class InvestmentFragment extends Fragment {
     String TDCMFF_S = "•\tThe fundamental investment objective is to earn a high rate of interest income and at the same time to preserve capital and maintain liquidity by investing primarily in high-quality money market securities, generally maturing in not more than one year.\n";
     String TDDGF_S = "•\tThe fundamental investment objective is to provide high level of after-tax income and steady growth by investing primarily in high-quality, high- yield equity securities and other income-producing instruments of Canadian issuers.\n";
     String TDSTBF_S = "•\tThe fundamental investment objective is to maximize income while simultaneously preserving investment capital and liquidity by investing primarily in debt obligations issued or guaranteed by the Canadian federal or provincial governments or any agency of such governments, as well as debt obligations of Schedule I Canadian chartered banks, debt obligations of loan or trust companies and debt obligations of corporations. In each case such obligations may have a term to maturity of up to five years.\n";
-    String EM_S = "";
+    String EM_S = "\tAn equity market is a market in which shares are issued and traded, either through exchanges or over-the-counter markets. Also known as the stock market, it is one of the most vital areas of a market economy because it gives companies access to capital and investors a slice of ownership in a company with the potential to realize gains based on its future performance. ";
     InvestmentPreview prev;// = new InvestmentPreview(view, main);
     //
     ArrayList test = new ArrayList();
@@ -69,14 +58,12 @@ public class InvestmentFragment extends Fragment {
         return new InvestmentFragment();
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         requireActivity().setTitle(R.string.fragmnet_investments_title);
         return inflater.inflate(R.layout.fragment_investment, container, false);
-
     }
 
     @Override
@@ -88,12 +75,6 @@ public class InvestmentFragment extends Fragment {
         btnISArr = new String[12];
         buttonArr = new Button[12];
         biArr = new int[12];
-
-
-        //safebtn = getActivity().findViewById(R.id.safe_btn);
-        //riskbtn = getActivity().findViewById(R.id.risk_btn);
-
-
         //assign view arrays
         for (int i = 0; i < 12; i++) {
             btnISArr[i] = "btn_ip_" + i + "";
@@ -101,13 +82,6 @@ public class InvestmentFragment extends Fragment {
             biArr[i] = getResources().getIdentifier(s, "id", "com.example.mygroove");
             buttonArr[i] = getActivity().findViewById(biArr[i]);
         }
-
-
-        //next2.setEnabled(false);
-        //btn_sumb.setEnabled(false);
-        //buttonArr[i].getBackground().setAlpha(255);
-
-
     }
 
 
@@ -116,19 +90,6 @@ public class InvestmentFragment extends Fragment {
     public void BtnIPClicked(View view, MainActivity main) {
         Button btn = (Button) view;
         String btn_id = "" + btn.getId();
-
-        // if btn = (Button) getActivity().findViewById()
-
-      /*  if(btn_id == "btn_ip_11"){
-            for(int i=0;i < 12;i++){
-                if (optns.containsKey(""+buttonArr[11].getId())) {
-                    change_btn_size(btn, -1, 0.93);
-                }
-            }
-
-        }else {*/
-
-
         if (btn == main.findViewById(R.id.safe_btn)) {
             if (optns.containsKey(btn_id)) {
                 change_btn_size(btn, -1, 0.93);
@@ -147,34 +108,25 @@ public class InvestmentFragment extends Fragment {
                 change_btn_size(btn, 1, 0.93);
                 riskSelected = 1;
             }
-            // }
         } else {
             if (optns.containsKey(btn_id)) {
                 change_btn_size(btn, -1, 0.93);
                 if (btn == main.findViewById(R.id.btn_ip_11)) term = 2;
-
             } else {
                 change_btn_size(btn, 1, 0.93);
                 if (btn == main.findViewById(R.id.btn_ip_11)) term = 1;
             }
         }
-
-
     }
 
     public void takeSafe(View view) {
-        // riskSelected = 0;
-
         Button btn = (Button) view;
         String btn_id = "" + btn.getId();
         if (optns.containsKey(btn_id)) {
             change_btn_size(btn, 2, 0.98);
-
         } else {
             change_btn_size(btn, 0, 0.98);
         }
-        // }
-
     }
 
     public void takeRisk(View view) {
@@ -200,15 +152,12 @@ public class InvestmentFragment extends Fragment {
             params.width *= mag;
             btn.setBackgroundColor(Color.GRAY);
             btn.setTextColor(Color.BLACK);
-
         } else {
             params.height /= mag;
             params.width /= mag;
             btn.setBackgroundColor(new_color);
             btn.setTextColor(Color.WHITE);
-
         }
-
         if (dir != 0) {
             if (dir != 2) {
                 float ipy = btn.getY();
@@ -223,7 +172,6 @@ public class InvestmentFragment extends Fragment {
     }
 
     public void change_btn_size(Button btn, int dir, double mag) {
-
         ViewGroup.LayoutParams params = btn.getLayoutParams();
         int init_h = params.height;
         int init_w = params.width;
@@ -236,14 +184,12 @@ public class InvestmentFragment extends Fragment {
             optns.put(btn_id, "s");
             btn.setBackgroundColor(Color.GRAY);
             btn.setTextColor(Color.BLACK);
-
         } else {
             params.height /= mag;
             params.width /= mag;
             optns.remove(btn_id);
             btn.setBackgroundColor(new_color);
             btn.setTextColor(Color.WHITE);
-
         }
 
         float ipy = btn.getY();
@@ -253,8 +199,6 @@ public class InvestmentFragment extends Fragment {
         btn.setX(newx);
         btn.setY(newy);
         btn.setLayoutParams(params);
-
-
     }
 
 
@@ -281,13 +225,10 @@ public class InvestmentFragment extends Fragment {
             return 5;
         }
         return 0;
-
-
     }
 
     //THE SUGGESTIONS TO BE SHOWN
     public class InvestmentPreview {
-
         //Portfolios to show
         public ArrayList<Portfolio> portfolios;
 
@@ -300,7 +241,6 @@ public class InvestmentFragment extends Fragment {
             portfolios = new ArrayList<>();
             IPMatch(view, main);
         }
-
 
         //SUGGESTED PORTFOLIOS
         public class Portfolio {
@@ -324,7 +264,6 @@ public class InvestmentFragment extends Fragment {
             return portfolios.get(i);
         }
 
-
         //FIND THE PREVIEWS
         public void IPMatch(View view, MainActivity main) {
 
@@ -341,7 +280,8 @@ public class InvestmentFragment extends Fragment {
             Button none = (Button) main.findViewById(R.id.btn_ip_11);
             String none_s = "" + none.getId();
 
-            if (optns.containsKey(none_s)) termPref = 1;
+            if (optns.containsKey(none_s)) termPref = 2;
+            else termPref = 1;
 
             //GET RISK TOLERANCE
             switch (riskToleranceRank) {
@@ -375,7 +315,7 @@ public class InvestmentFragment extends Fragment {
                 if (termPref == 1) {
                     this.add(TDSTBF, TDSTBF_L, TDSTBF_S);
                 } else {
-                    this.add(TDDGF, TDDGF_L, TDDGF_S);
+                    this.add(TDSTBF, TDDGF_L, TDSTBF_S);
 
                 }
 
@@ -383,10 +323,9 @@ public class InvestmentFragment extends Fragment {
                 if (termPref == 1) {
                     this.add(TDDGF, TDDGF_L, TDDGF_S);
                 } else {
-                    this.add(TDDGF, TDDGF_L, TDDGF_S);
+                    this.add(EM, TDDGF_L, EM_S);
 
                 }
-
             }
 
             if (riskRank == 1) {
@@ -401,7 +340,6 @@ public class InvestmentFragment extends Fragment {
                     this.add(TDDGF, TDDGF_L, TDDGF_S);
                 } else {
                     this.add(TDDGF, TDDGF_L, TDDGF_S);
-
                 }
 
             } else if (riskRank == 3) {
@@ -411,29 +349,20 @@ public class InvestmentFragment extends Fragment {
                     this.add(EM, EM_L, EM_S);
 
                 }
-
             }
-
-
-            //this.add(tempMutual,"");
-
         }
-
-
     }
-
 
     //ON CLICK SHOW THE SUGGESTIONS
     public InvestmentPreview showPrev(View view, MainActivity main) {
-
         //CREATE A PREVIEW
-
         prev = new InvestmentPreview(view, main);
         String name = prev.portfolio(0).investment.getName();
         //UPDATE SCREEN W/ PREVIEW
+
+        optns = new HashMap<>();
         return prev;
     }
-
 
     //INITIALIZE NECESSARY VARIABLES -- CREATE ETF DICTIONARY
     public void init_inv() {
@@ -442,12 +371,10 @@ public class InvestmentFragment extends Fragment {
         TDSTBF = new Investment("TD short Term Bond Fund 1", 0.5, 100);
         EM = new Investment("EQUITY MARKET", -1, 0);
 
-
         op.put(TDCMFF.getName(), TDCMFF);
         op.put(TDDGF.getName(), TDDGF);
         op.put(TDSTBF.getName(), TDSTBF);
         op.put(EM.getName(), EM);
-
     }
 
 
@@ -456,9 +383,6 @@ public class InvestmentFragment extends Fragment {
         String name;
         double interest;
         int minDeposit;
-
-        public Investment() {
-        }
 
         public Investment(String name_, double interest_, int minDeposit_) {
             name = name_;
@@ -470,41 +394,17 @@ public class InvestmentFragment extends Fragment {
         public String getName() {
             return name;
         }
-
     }
-
-    //AN INVESTMENT MADE BY USER
-    public class InvestmentPortfolio {
-        String name;
-        double interest;
-        double principal;
-        double maturity;
-        int maturityMonth, maturityYear, maturityDay;
-        Date dom;
-        Investment investment;
-        int tempMat;
-
-
-        public InvestmentPortfolio(Investment investment_, double principal, int tempMat_) {
-
-        }
-    }
-
 
     //DESCRIBES USER INVESTMENT PROFILE --SEPRATE
     public class InvestmentProfile {
-
         Map<String, Investment> MyInvestments = new HashMap<>();
         public ArrayList<Investment> selectedInvestments = new ArrayList<>();
         int riskRank;
         int termPrefence;
 
-
         public void add(Investment inv) {
             selectedInvestments.add(inv);
         }
-
     }
-
-
 }

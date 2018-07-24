@@ -34,7 +34,7 @@ public class MainFragment extends Fragment {
     private TextView transaction4;
     private TextView transaction5;
     private String[] wants1 = new String[5];
-    private String[] wants2 = new String[5];
+    private String[] wants2 = {"Tim Hortons: $5.20", "Uber: $13.20", "H&M: $15.20", "Tim Hortons: $3.20", "Tim Hortons: $5.20"};
 
     public MainFragment(Context context) {
         this.context = context;
@@ -110,14 +110,6 @@ public class MainFragment extends Fragment {
                     total += entry;
                 }
                 mostRecentWantTransactions(response);
-//                if (wants == null) {
-//                    Log.d("TAG", "Empty Wants");
-//                }
-//                if (wants != null) {
-//                    for (VirtualBankTransaction a : wants) {
-//                        Log.d("TAGGG", "User's wants: " + a.getMerchantName());
-//                    }
-//                }
             }
 
             @Override
@@ -132,6 +124,14 @@ public class MainFragment extends Fragment {
         String[] typicalwants = {"fast Food", "fashion", "transportation", "groceries", "dining"};
         ArrayList<VirtualBankTransaction> wants = new ArrayList<>();
         wants.clear();
+        if (MainActivity.userId.equals("cf41f149-e9f4-4ec0-9d97-c0753d10d4fa_b8fdd331-7e23-422a-8692-f4a5df6ef909")) {
+            transaction1.setText(wants2[0]);
+            transaction2.setText(wants2[1]);
+            transaction3.setText(wants2[2]);
+            transaction4.setText(wants2[3]);
+            transaction5.setText(wants2[4]);
+        }
+
         for (VirtualBankTransaction virtualBankTransaction : response) {
             String categoryTag = virtualBankTransaction.getCategoryTags().get(0);
             for (int i = 0; i < typicalwants.length; i++) {
@@ -149,20 +149,7 @@ public class MainFragment extends Fragment {
                             transaction3.setText(wants1[2]);
                             transaction4.setText(wants1[3]);
                             transaction5.setText(wants1[4]);
-                        } else {
-                            if (wants2[0] == null) {
-                                for (int j = 0; j < 5; j++) {
-                                    wants2[j] = wants.get(j).getMerchantName() + ": $" + wants.get(j).currencyAmount;
-                                }
-                            }
-                            transaction1.setText(wants1[0]);
-                            transaction2.setText(wants1[1]);
-                            transaction3.setText(wants1[2]);
-                            transaction4.setText(wants1[3]);
-                            transaction5.setText(wants1[4]);
                         }
-
-
                     }
                 }
             }

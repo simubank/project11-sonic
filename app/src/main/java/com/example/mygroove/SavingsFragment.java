@@ -2,6 +2,8 @@ package com.example.mygroove;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -13,6 +15,7 @@ import android.widget.TextView;
 
 import com.android.volley.VolleyError;
 import com.example.mygroove.MainActivity;
+import com.td.virtualbank.VirtualBank;
 import com.td.virtualbank.VirtualBankCustomer;
 import com.td.virtualbank.VirtualBankGetCustomerRequest;
 import com.td.virtualbank.VirtualBankGetCustomerTransactionsRequest;
@@ -27,7 +30,12 @@ public class SavingsFragment extends Fragment {
     private Context context;
     private double monthlySpending;
     private TextView monthlyAverage;
+    TextView average;
     private ProgressBar progressBar;
+    TextView percent1;
+    public static ArrayList<VirtualBankTransaction> wants = new ArrayList<>();
+    private ArrayList<VirtualBankTransaction> needs = new ArrayList<>();
+
 
     public SavingsFragment(Context context) {
         this.context = context;
@@ -48,18 +56,35 @@ public class SavingsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        requireActivity().setTitle(R.string.fragment_savings_title);
         return inflater.inflate(R.layout.fragment_savings, container, false);
     }
 
-    public void gettransactions() {
+    public void getNeeds() {
+        MainActivity.vb.getCustomerTransactions(context, MainActivity.userId, new VirtualBankGetCustomerTransactionsRequest() {
+            @Override
+            public void onSuccess(ArrayList<VirtualBankTransaction> response) {
+                HashMap<String, Double> transactions = new HashMap<>();
 
-        Log.d("TAG", "CHECK ME: " + context);
-        MainActivity.vb.getCustomerTransactions(context, "cf41f149-e9f4-4ec0-9d97-c0753d10d4fa_46ecc00a-84f5-4b64-a1fa-4354edeba8c4", new VirtualBankGetCustomerTransactionsRequest() {
+            }
+
+            @Override
+            public void onError(VolleyError error) {
+
+            }
+        });
+    }
+
+    public void gettransactions() {
+        MainActivity.vb.getCustomerTransactions(context, MainActivity.userId, new VirtualBankGetCustomerTransactionsRequest() {
             @Override
             public void onSuccess(ArrayList<VirtualBankTransaction> response) {
                 HashMap<String, Double> transactions = new HashMap<>();
                 for (VirtualBankTransaction virtualBankTransaction : response) {
                     Double amount = virtualBankTransaction.currencyAmount;
+                    amount = Math.abs(amount);
+                    if (!virtualBankTransaction.getType().equals("CreditCardTransaction"))
+                        continue;
                     Log.d("TAG", "Amount: " + amount);
                     Double temp;
                     if (transactions.get(virtualBankTransaction.postDate.substring(0, 7)) == null)
@@ -77,6 +102,14 @@ public class SavingsFragment extends Fragment {
                 }
                 updateProgressBar(total, count, transactions);
                 mostRecentWantTransactions(response);
+                if (wants == null) {
+                    Log.d("TAG", "Empty Wants");
+                }
+                if (wants != null) {
+                    for (VirtualBankTransaction a : wants) {
+                        Log.d("TAGGG", "User's wants: " + a.getMerchantName());
+                    }
+                }
             }
 
             @Override
@@ -86,40 +119,59 @@ public class SavingsFragment extends Fragment {
         });
     }
 
-    public void mostRecentWantTransactions(ArrayList<VirtualBankTransaction> response) {
-        String[] typicalWants = {"power", "energy", "condo", "enbridge", "mortgage", "savings", "overdraft", "insurance", "provident", "rent", "tax", "hyrdo", "utility", "gas"};
-        String search = "keyword";
-        ArrayList<String> wants = null;
+    public void mostRecentNeedTransactions(ArrayList<VirtualBankTransaction> response) {
+        String[] typicalNeeds = {"fees", "insurance", "mortgage", "tax", "bill", "rent", "cheque"};
         for (VirtualBankTransaction virtualBankTransaction : response) {
-            String description = virtualBankTransaction.getDescription();
-            String vendor = virtualBankTransaction.getMerchantName();
-            for (int i = 0; i < typicalWants.length; i++) {
-                if (description != null && description.toLowerCase().indexOf(typicalWants[i].toLowerCase()) != -1 || vendor != null && vendor.toLowerCase().indexOf(typicalWants[i].toLowerCase()) != -1) {
-                    return;
-                } else if (description != null && vendor != null) {
-                    if (vendor != null) {
-                        wants.add(virtualBankTransaction.getMerchantName());
-                    } else {
-                        wants.add(virtualBankTransaction.getDescription());
+            String categoryTag = virtualBankTransaction.getCategoryTags().get(0);
+            for (int i = 0; i < typicalNeeds.length; i++) {
+                if (categoryTag != null && categoryTag.toLowerCase().equals(typicalNeeds[i])) {
+                    needs.add(virtualBankTransaction);
+                    if (needs.size() == 5) {
+                        return;
                     }
+                }
+            }
+        }
+    }
+
+    public void mostRecentWantTransactions(ArrayList<VirtualBankTransaction> response) {
+//        String[] typicalWants = {"power", "energy", "condo", "enbridge", "mortgage", "savings", "Micro", "Enbridge", "Rent", "overdraft", "insurance", "provident", "rent", "tax", "hyrdo", "utility", "gas"};
+        String[] typicalwants = {"fast Food", "fashion", "transportation", "groceries", "dining"};
+        for (VirtualBankTransaction virtualBankTransaction : response) {
+            String categoryTag = virtualBankTransaction.getCategoryTags().get(0);
+            for (int i = 0; i < typicalwants.length; i++) {
+                if (categoryTag != null && categoryTag.toLowerCase().equals(typicalwants[i])) {
+                    wants.add(virtualBankTransaction);
                     if (wants.size() == 5) {
                         return;
                     }
                 }
             }
         }
-        for (String a : wants) {
-            Log.d("TAGGG", "User's wants: " + a);
-        }
     }
 
-    public void updateProgressBar(double total, double count, HashMap<String, Double> transactions) {
+    public void updateProgressBar(double total, double count, HashMap<
+            String, Double> transactions) {
         monthlyAverage = getView().findViewById(R.id.monthly_average);
+        average = getView().findViewById(R.id.average);
         progressBar = getView().findViewById(R.id.progressWheel);
-        monthlySpending = Math.round(total / count);
+        monthlySpending = Math.round(total / count)*1.1;
+        percent1 = getView().findViewById(R.id.percent1);
         Log.d("TAG", "Monthly Spending: " + monthlySpending);
-        monthlyAverage.setText("Monthly Average: " + monthlySpending);
-        int progress = (int) ((transactions.get("2018-07") / monthlySpending) * 100);
-        progressBar.setProgress(progress);
+        monthlyAverage.setText("Monthly Average: " + MoneyUtil.format(monthlySpending));
+        double progress;
+        double thisMonth;
+        if (transactions.get("2018-08") != null) {
+            thisMonth = transactions.get("2018-08");
+        } else
+            thisMonth = transactions.get("2018-07");
+        progress = (thisMonth / monthlySpending) * 100;
+        progressBar.setProgress((int) progress);
+        average.setText("This Month's Spending: " + MoneyUtil.format(thisMonth));
+        if (progress > 100) {
+//            progressBar.getIndeterminateDrawable().setColorFilter(Color.RED,android.graphics.PorterDuff.Mode.MULTIPLY);
+            progressBar.getProgressDrawable().setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY);
+        }
+        percent1.setText((int) progress + "%");
     }
 }

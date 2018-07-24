@@ -8,51 +8,92 @@
     android:orientation="vertical"
     tools:context=".SavingsFragment">
 
-    <TextView
-        android:id="@+id/textview5"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Savings Fragment" />
+        android:layout_height="match_parent">
 
-    <android.support.constraint.ConstraintLayout
-        android:layout_width="300dp"
-        android:layout_height="300dp">
-
-        <TextView
-            android:id="@+id/percent1"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="Discretionary\n50%"
-            android:textSize="30sp" />
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
 
-        <ProgressBar
-            android:id="@+id/progressWheel2"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_centerInParent="true"
-            android:indeterminate="false"
-            android:progress="100"
-            android:progressDrawable="@drawable/circular_progress_bar_2" />
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="300dp"
+                android:layout_height="300dp">
 
-        <ProgressBar
-            android:id="@+id/progressWheel"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="300dp"
-            android:layout_height="300dp"
-            android:layout_centerInParent="true"
-            android:indeterminate="false"
-            android:progress="0"
-            android:progressDrawable="@drawable/circular_progress_bar" />
-    </android.support.constraint.ConstraintLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="Monthly Spendings"
+                    android:textColor="@android:color/black"
+                    android:textSize="28sp" />
 
-    <TextView
-        android:id="@+id/monthly_average"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Monthly Average"
-        android:textSize="20sp"
-        app:layout_constraintTop_toBottomOf="@id/progressWheel" />
+                <TextView
+                    android:id="@+id/percent1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text=""
+                    android:textSize="30sp" />
+
+                <ProgressBar
+                    android:id="@+id/progressWheel2"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+                    android:indeterminate="false"
+                    android:progress="100"
+                    android:progressDrawable="@drawable/circular_progress_bar_2" />
+
+                <ProgressBar
+                    android:id="@+id/progressWheel"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="300dp"
+                    android:layout_height="300dp"
+                    android:layout_centerInParent="true"
+                    android:indeterminate="false"
+                    android:progress="0"
+                    android:progressDrawable="@drawable/circular_progress_bar" />
+
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/monthly_average"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:gravity="center_horizontal"
+                    android:text="Monthly Average"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/average"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:gravity="center_horizontal"
+                    android:text="This Month's Spending"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/monthly_average" />
+            </android.support.constraint.ConstraintLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </LinearLayout>

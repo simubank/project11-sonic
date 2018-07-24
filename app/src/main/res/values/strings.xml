@@ -21,11 +21,16 @@
     <string name="info_risktol">What is risk tolerance?\n\n
         Your risk tolerance can be best described as how much of a risk you are willing to take to earn a return.
         Not all investments can guarantee a return but usually the higher the risk the higher return.
-    However, you have to gage if it is really worth it because a higher risk means you are more likely to loose your money.</string>
+    However, you have to gauge if it is really worth it because a higher risk means you are more likely to loose your money.</string>
     <string name="ip_st_5">Vacation Trip</string>
     <string name="ip_riskr_0">Take the risk</string>
     <string name="ip_riskr_1">Play It Safe</string>
     <string name="ip_risk_wyr">Woul you rather risk $50 to earn $50 or keep your $50 and take a guaranteed $5</string>
     <string name="preview_title">\nHere\'s Where You Can Start!</string>
+
+    <!--Fragment titles-->
+    <string name="fragment_savings_title">Savings</string>
+    <string name="fragment_home_title">MyGroove</string>
+    <string name="fragmnet_investments_title">Investments</string>
 
 </resources>

@@ -2,17 +2,20 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/option1"
-        android:title="Savings"
-        android:enabled="true" />
+        android:enabled="true"
+        android:icon="@android:drawable/ic_menu_call"
+        android:title="Savings"/>
 
     <item
         android:id="@+id/option2"
-        android:title="DashBoard"
-        android:enabled="true" />
+        android:enabled="true"
+        android:icon="@android:drawable/ic_media_play"
+        android:title="DashBoard"/>
 
     <item
         android:id="@+id/option3"
-        android:title="Investment"
-        android:enabled="true" />
+        android:enabled="true"
+        android:icon="@android:drawable/ic_menu_camera"
+        android:title="Investment"/>
 
 </menu>

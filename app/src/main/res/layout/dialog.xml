@@ -2,17 +2,18 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:padding="20dp"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="20dp">
 
     <TextView
         android:id="@+id/select_user"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:textSize="32sp"
-        android:textStyle="bold"
+        android:layout_margin="8dp"
+        android:text="Select A User"
         android:textColor="@color/black"
-        android:text="Select A User" />
+        android:textSize="32sp"
+        android:textStyle="bold" />
 
     <RadioGroup
         android:layout_width="match_parent"
@@ -23,32 +24,25 @@
             android:id="@+id/user1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="28sp"
+            android:onClick="onRadioButtonClicked"
             android:text="Ren Drzazgowski"
-            android:onClick="onRadioButtonClicked" />
+            android:textSize="28sp" />
 
         <RadioButton
             android:id="@+id/user2"
-            android:text="Elmo Swint"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="28sp"
-            android:onClick="onRadioButtonClicked" />
-
-        <RadioButton
-            android:id="@+id/user3"
-            android:text="Leam Pipes"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="28sp"
-            android:onClick="onRadioButtonClicked" />
+            android:onClick="onRadioButtonClicked"
+            android:text="Thea Mccallough"
+            android:textSize="28sp" />
     </RadioGroup>
 
     <Button
         android:id="@+id/dialog_confirm"
-        android:textSize="28sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:onClick="dismiss"
         android:text="Confirm"
-        />
+        android:textSize="28sp" />
 </LinearLayout>

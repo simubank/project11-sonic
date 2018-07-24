@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MyGroove</string>
+    <string name="app_name">TD MyGroove</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -13,7 +13,7 @@
     <string name="ip_st_4">Start a Business</string>
     <string name="title_activity_scrolling">ScrollingActivity</string>
     <string name="action_settings">Settings</string>
-    <string name="ip_q2_prompt">What describes your goals within the next 1 years?</string>
+    <string name="ip_q2_prompt">What describes your goals within the next 1 year?</string>
     <string name="risk_prompt">What is your risk tolerance?</string>
     <string name="income_prompt">What is your monthly income</string>
     <string name="expense_prompt">What is your monthly expenses (i.e/total of insurance, rent, mortgage payments, car payments...etc)</string>
@@ -25,7 +25,7 @@
     <string name="ip_st_5">Vacation Trip</string>
     <string name="ip_riskr_0">Take the risk</string>
     <string name="ip_riskr_1">Play It Safe</string>
-    <string name="ip_risk_wyr">Woul you rather risk $50 to earn $50 or keep your $50 and take a guaranteed $5</string>
+    <string name="ip_risk_wyr">Would you rather risk $50 to earn $50 or keep your $50 and take a guaranteed $5</string>
     <string name="preview_title">\nHere\'s Where You Can Start!</string>
     <string name="buy_bth">BUY</string>
     <string name="learn_btn">LEARN</string>
@@ -33,7 +33,7 @@
 
     <!--Fragment titles-->
     <string name="fragment_savings_title">Savings</string>
-    <string name="fragment_home_title">MyGroove</string>
+    <string name="fragment_home_title">TD MyGroove</string>
     <string name="fragmnet_investments_title">Investments</string>
 
 </resources>

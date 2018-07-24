@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,7 +17,6 @@ import android.widget.TextView;
 public class PreviewFragment extends Fragment {
     private TextView sug_h0;
     private TextView sug_d0;
-
     private TextView sug_h1;
     private TextView sug_d1;
 
@@ -30,8 +30,8 @@ public class PreviewFragment extends Fragment {
         this.context = context;
         this.f = f;
         // Required empty public constructor
-    }
 
+    }
 
     public static Fragment newInstance(Context context, InvestmentFragment f) {
         return new PreviewFragment(context, f);
@@ -46,8 +46,6 @@ public class PreviewFragment extends Fragment {
 
         sug_h0 = (TextView) main.findViewById(R.id.prev_head_0);
         sug_d0 = (TextView) main.findViewById(R.id.prev_des_0);
-
-
         show();
         return main;
     }
@@ -66,7 +64,5 @@ public class PreviewFragment extends Fragment {
         }
         sug_h0.setText(title[0]);
         sug_d0.setText(desc[0]);
-
-
     }
 }

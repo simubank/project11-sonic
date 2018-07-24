@@ -38,7 +38,6 @@ public class InvestmentFragment extends Fragment {
     boolean ask = false;
     int term = 2;
 
-
     Investment[] investments;
     Investment tempMutual, temp2, temp3, temp4, temp5;// = new Investment("Mutual Fund", 2.5,1000);
     Investment TDCMFF, TDDGF, TDSTBF, EM;
@@ -365,7 +364,6 @@ public class InvestmentFragment extends Fragment {
                     break;
             }
 
-
             if (riskRank == 1) {
                 if (termPref == 1) {
                     this.add(TDCMFF, TDCMFF_L, TDCMFF_S);
@@ -433,16 +431,12 @@ public class InvestmentFragment extends Fragment {
         prev = new InvestmentPreview(view, main);
         String name = prev.portfolio(0).investment.getName();
         //UPDATE SCREEN W/ PREVIEW
-        // TextView tv = main.findViewById(R.id.textView2);
-        // tv.setText(name);//(prev.portfolios.get(0).investment.getName()));
         return prev;
     }
 
 
     //INITIALIZE NECESSARY VARIABLES -- CREATE ETF DICTIONARY
     public void init_inv() {
-
-
         TDCMFF = new Investment("TD Canadian Money Market Fund 1 ", -1, 100);
         TDDGF = new Investment("TD Dividend Growth Fund 1", 1.5, 100);
         TDSTBF = new Investment("TD short Term Bond Fund 1", 0.5, 100);

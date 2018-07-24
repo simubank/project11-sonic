@@ -27,6 +27,9 @@
     <string name="ip_riskr_1">Play It Safe</string>
     <string name="ip_risk_wyr">Woul you rather risk $50 to earn $50 or keep your $50 and take a guaranteed $5</string>
     <string name="preview_title">\nHere\'s Where You Can Start!</string>
+    <string name="buy_bth">BUY</string>
+    <string name="learn_btn">LEARN</string>
+    <string name="save_btn">SAVE</string>
 
     <!--Fragment titles-->
     <string name="fragment_savings_title">Savings</string>

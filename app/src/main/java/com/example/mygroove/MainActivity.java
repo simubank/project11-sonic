@@ -15,6 +15,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.RadioButton;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.td.virtualbank.VirtualBank;
 
@@ -28,11 +29,16 @@ public class MainActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private Dialog dialog;
 
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         f.init_inv();
+
+
+
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
@@ -62,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
                         .replace(R.id.frame_layout, selected).commit();
                 return true;
             }
+
         });
 
     }
@@ -147,4 +154,12 @@ public class MainActivity extends AppCompatActivity {
         Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.td.com/ca/products-services/investing/td-direct-investing/index-res.jsp"));
         startActivity(browserIntent);
     }
+
+
+
+    //public void setPreview(View view){
+    //    setPre
+   // }
+
+
 }
